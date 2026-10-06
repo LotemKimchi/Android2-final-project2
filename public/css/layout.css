@@ -1,0 +1,104 @@
+.container {
+  width: min(1100px, 100% - 2rem);
+  margin-inline: auto;
+  padding-block: 1.5rem;
+}
+
+.site-header {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding-block: 0.75rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-shadow:
+    2px 2px 0 var(--color-primary-soft),
+    3px 3px 6px rgb(0 0 0 / 0.15); /* Req 13.i */
+}
+
+.site-nav,
+.site-header__user {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header__user {
+  margin-left: auto;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .page-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.stack > * + * {
+  margin-top: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.row--between {
+  justify-content: space-between;
+}
+
+/* Req 13.iii — multiple columns (directories of groups / people) */
+.columns-directory {
+  columns: 280px;
+  column-gap: 1.25rem;
+}
+
+.columns-directory > * {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+
+.columns-text {
+  columns: 2 240px;
+  column-rule: 1px solid var(--color-border);
+  column-gap: 2rem;
+}
+
+.auth-card {
+  max-width: 440px;
+  margin: 2rem auto;
+}
+
+.profile-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-header__info {
+  flex: 1;
+  min-width: 220px;
+}

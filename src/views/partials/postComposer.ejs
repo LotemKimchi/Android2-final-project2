@@ -1,0 +1,25 @@
+<% const prefix = locals.idPrefix ?? 'composer'; %>
+<form class="card form js-post-composer" novalidate>
+  <div class="field">
+    <label for="<%= prefix %>-content">New post</label>
+    <textarea id="<%= prefix %>-content" name="content" rows="3" maxlength="2000" placeholder="<%= locals.placeholder ?? "What's on your mind?" %>"></textarea>
+    <small class="field-error" data-error-for="content"></small>
+  </div>
+  <div class="form form--inline">
+    <div class="field">
+      <label for="<%= prefix %>-image">Image</label>
+      <input id="<%= prefix %>-image" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+      <small class="field-error" data-error-for="image"></small>
+    </div>
+    <div class="field">
+      <label for="<%= prefix %>-video">Video</label>
+      <input id="<%= prefix %>-video" name="video" type="file" accept="video/mp4,video/webm">
+      <small class="field-error" data-error-for="video"></small>
+    </div>
+  </div>
+  <div class="js-doodle-host hidden"></div>
+  <div class="row row--between">
+    <button type="button" class="btn btn--ghost js-toggle-doodle">🎨 Draw a doodle</button>
+    <button type="submit" class="btn btn--primary">Post</button>
+  </div>
+</form>

@@ -1,0 +1,135 @@
+.chart-container {
+  width: 100%;
+  min-height: 120px;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  font-family: var(--font-body);
+}
+
+.chart-axis text {
+  font-size: 12px;
+  fill: var(--color-muted);
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+
+.chart-area {
+  fill: var(--color-primary-soft);
+}
+
+.chart-dot {
+  fill: var(--color-primary);
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.chart-bar {
+  fill: var(--color-primary);
+  transition: fill var(--transition-fast);
+}
+
+.chart-bar:hover {
+  fill: var(--color-primary-dark);
+}
+
+.chart-value {
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+/* Donut chart ("What are people talking about?"). Six hues validated for color-blind viewers. */
+.pie-chart {
+  --slice-1: #2a78d6;
+  --slice-2: #1baf7a;
+  --slice-3: #eda100;
+  --slice-4: #e87ba4;
+  --slice-5: #008300;
+  --slice-6: #4a3aa7;
+  --slice-other: #a3a3a3;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+}
+
+.pie-chart__donut {
+  flex: 0 1 300px;
+}
+
+.chart-slice {
+  stroke: var(--color-surface); /* 2px gap between slices */
+  stroke-width: 2;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.chart-slice.is-dimmed {
+  opacity: 0.35;
+}
+
+.pie-chart__value {
+  font-size: 2rem;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--color-text);
+}
+
+.pie-chart__label {
+  font-size: 0.85rem;
+  text-anchor: middle;
+  text-transform: capitalize;
+  fill: var(--color-muted);
+}
+
+.pie-chart__legend {
+  flex: 1 1 220px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.pie-chart__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: default;
+  transition: background-color var(--transition-fast);
+}
+
+.pie-chart__item.is-active {
+  background: var(--color-primary-soft);
+}
+
+.pie-chart__swatch {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+}
+
+.pie-chart__name {
+  text-transform: capitalize;
+}
+
+.pie-chart__count {
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pie-chart__note {
+  flex-basis: 100%;
+  margin: 0;
+}

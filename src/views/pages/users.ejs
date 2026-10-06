@@ -1,0 +1,44 @@
+<%- include('../partials/head', { title }) %>
+<h1>People</h1>
+<section class="card">
+  <form id="user-search-form" class="form form--inline" novalidate>
+    <div class="field">
+      <label for="us-q">Name or username</label>
+      <input id="us-q" name="q" maxlength="60" placeholder="e.g. dana">
+      <small class="field-error" data-error-for="q"></small>
+    </div>
+    <div class="field">
+      <label for="us-city">City</label>
+      <input id="us-city" name="city" maxlength="60">
+      <small class="field-error" data-error-for="city"></small>
+    </div>
+    <div class="field">
+      <label for="us-gender">Gender</label>
+      <select id="us-gender" name="gender">
+        <option value="">Any</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
+      <small class="field-error" data-error-for="gender"></small>
+    </div>
+    <div class="field">
+      <label for="us-min">Min age</label>
+      <input id="us-min" name="minAge" type="number" min="0" max="120">
+      <small class="field-error" data-error-for="minAge"></small>
+    </div>
+    <div class="field">
+      <label for="us-max">Max age</label>
+      <input id="us-max" name="maxAge" type="number" min="0" max="120">
+      <small class="field-error" data-error-for="maxAge"></small>
+    </div>
+    <div class="row">
+      <button class="btn btn--primary" type="submit">Search</button>
+      <button class="btn btn--ghost" type="reset">Clear</button>
+    </div>
+  </form>
+</section>
+<p id="user-results-summary" class="muted"></p>
+<div id="user-results" class="columns-directory"></div>
+<nav id="user-pager" class="pager"></nav>
+<%- include('../partials/foot', { scripts: ['/js/pages/users.js'] }) %>

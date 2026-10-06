@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title }) %>
+<div class="page-grid">
+  <section class="stack">
+    <h1>Your feed</h1>
+    <%- include('../partials/postComposer', { idPrefix: 'feed', placeholder: 'Share something with your friends…' }) %>
+    <div id="feed-posts"></div>
+  </section>
+  <aside class="card">
+    <h2>Your groups</h2>
+    <div id="my-groups" class="stack"></div>
+    <a class="btn" href="/groups">Browse groups</a>
+  </aside>
+</div>
+<%- include('../partials/foot', { scripts: ['/js/pages/feed.js'], useIslands: true }) %>

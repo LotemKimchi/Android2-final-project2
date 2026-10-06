@@ -1,0 +1,51 @@
+<%- include('../partials/head', { title }) %>
+<h1>Groups</h1>
+<div class="page-grid">
+  <section class="stack">
+    <div class="card">
+      <form id="group-search-form" class="form form--inline" novalidate>
+        <div class="field">
+          <label for="gs-name">Name</label>
+          <input id="gs-name" name="name" maxlength="60">
+          <small class="field-error" data-error-for="name"></small>
+        </div>
+        <div class="field">
+          <label for="gs-category">Category</label>
+          <select id="gs-category" name="category">
+            <option value="">Any</option>
+            <% categories.forEach((category) => { %><option value="<%= category %>"><%= category %></option><% }) %>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gs-privacy">Privacy</label>
+          <select id="gs-privacy" name="privacy">
+            <option value="">Any</option>
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gs-min">Min members</label>
+          <input id="gs-min" name="minMembers" type="number" min="0">
+          <small class="field-error" data-error-for="minMembers"></small>
+        </div>
+        <label class="checkbox"><input type="checkbox" name="mine" value="true"> Only my groups</label>
+        <div class="row">
+          <button class="btn btn--primary" type="submit">Search</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </div>
+    <p id="group-results-summary" class="muted"></p>
+    <div id="group-results" class="columns-directory"></div>
+    <nav id="group-pager" class="pager"></nav>
+  </section>
+  <aside class="card">
+    <h2>Create a group</h2>
+    <form id="create-group-form" class="form" novalidate>
+      <%- include('../partials/groupFormFields', { idPrefix: 'new-group' }) %>
+      <button class="btn btn--primary" type="submit">Create group</button>
+    </form>
+  </aside>
+</div>
+<%- include('../partials/foot', { scripts: ['/js/pages/groups.js'] }) %>

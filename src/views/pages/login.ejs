@@ -1,0 +1,19 @@
+<%- include('../partials/head', { title }) %>
+<section class="card auth-card">
+  <h1>Welcome back</h1>
+  <form id="login-form" class="form" novalidate>
+    <div class="field">
+      <label for="login-username">Username</label>
+      <input id="login-username" name="username" autocomplete="username" required maxlength="30">
+      <small class="field-error" data-error-for="username"></small>
+    </div>
+    <div class="field">
+      <label for="login-password">Password</label>
+      <input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="100">
+      <small class="field-error" data-error-for="password"></small>
+    </div>
+    <button class="btn btn--primary" type="submit">Log in</button>
+  </form>
+  <p class="muted">New here? <a href="/register">Create an account</a></p>
+</section>
+<%- include('../partials/foot', { scripts: ['/js/pages/login.js'] }) %>

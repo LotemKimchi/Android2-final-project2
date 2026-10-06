@@ -1,0 +1,54 @@
+<%- include('../partials/head', { title }) %>
+<section class="card auth-card">
+  <h1>Join Circles</h1>
+  <form id="register-form" class="form" novalidate>
+    <div class="field">
+      <label for="reg-username">Username</label>
+      <input id="reg-username" name="username" autocomplete="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_]+">
+      <small class="field-error" data-error-for="username"></small>
+    </div>
+    <div class="field">
+      <label for="reg-display">Display name</label>
+      <input id="reg-display" name="displayName" required maxlength="60">
+      <small class="field-error" data-error-for="displayName"></small>
+    </div>
+    <div class="field">
+      <label for="reg-email">Email (private)</label>
+      <input id="reg-email" name="email" type="email" autocomplete="email" required maxlength="254">
+      <small class="field-error" data-error-for="email"></small>
+    </div>
+    <div class="field">
+      <label for="reg-password">Password</label>
+      <input id="reg-password" name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100">
+      <small class="field-error" data-error-for="password"></small>
+    </div>
+    <div class="field">
+      <label for="reg-confirm">Confirm password</label>
+      <input id="reg-confirm" name="confirmPassword" type="password" autocomplete="new-password" required>
+      <small class="field-error" data-error-for="confirmPassword"></small>
+    </div>
+    <div class="field">
+      <label for="reg-birth">Birth date (private)</label>
+      <input id="reg-birth" name="birthDate" type="date" required>
+      <small class="field-error" data-error-for="birthDate"></small>
+    </div>
+    <div class="field">
+      <label for="reg-gender">Gender</label>
+      <select id="reg-gender" name="gender" required>
+        <option value="">Choose…</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
+      <small class="field-error" data-error-for="gender"></small>
+    </div>
+    <div class="field">
+      <label for="reg-city">City</label>
+      <input id="reg-city" name="city" maxlength="60">
+      <small class="field-error" data-error-for="city"></small>
+    </div>
+    <button class="btn btn--primary" type="submit">Create account</button>
+  </form>
+  <p class="muted">Already have an account? <a href="/login">Log in</a></p>
+</section>
+<%- include('../partials/foot', { scripts: ['/js/pages/register.js'] }) %>

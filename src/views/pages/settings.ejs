@@ -1,0 +1,86 @@
+<%- include('../partials/head', { title }) %>
+<h1>Settings</h1>
+<div class="page-grid">
+  <section class="card">
+    <h2>Profile</h2>
+    <form id="profile-form" class="form" novalidate>
+      <div class="row">
+        <img id="avatar-preview" class="avatar avatar--lg" src="/images/default-avatar.svg" alt="Current avatar">
+        <div class="field">
+          <label for="set-avatar">New avatar</label>
+          <input id="set-avatar" name="avatar" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+          <small class="field-error" data-error-for="avatar"></small>
+          <label class="checkbox"><input type="checkbox" name="removeAvatar" value="true"> Remove avatar</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="set-display">Display name</label>
+        <input id="set-display" name="displayName" required maxlength="60">
+        <small class="field-error" data-error-for="displayName"></small>
+      </div>
+      <div class="field">
+        <label for="set-email">Email (private)</label>
+        <input id="set-email" name="email" type="email" required maxlength="254">
+        <small class="field-error" data-error-for="email"></small>
+      </div>
+      <div class="field">
+        <label for="set-birth">Birth date (private)</label>
+        <input id="set-birth" name="birthDate" type="date" required>
+        <small class="field-error" data-error-for="birthDate"></small>
+      </div>
+      <div class="field">
+        <label for="set-gender">Gender</label>
+        <select id="set-gender" name="gender" required>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+        <small class="field-error" data-error-for="gender"></small>
+      </div>
+      <div class="field">
+        <label for="set-city">City</label>
+        <input id="set-city" name="city" maxlength="60">
+        <small class="field-error" data-error-for="city"></small>
+      </div>
+      <div class="field">
+        <label for="set-bio">Bio</label>
+        <textarea id="set-bio" name="bio" rows="3" maxlength="300"></textarea>
+        <small class="field-error" data-error-for="bio"></small>
+      </div>
+      <button class="btn btn--primary" type="submit">Save profile</button>
+    </form>
+  </section>
+  <aside class="stack">
+    <section class="card">
+      <h2>Change password</h2>
+      <form id="password-form" class="form" novalidate>
+        <div class="field">
+          <label for="set-current">Current password</label>
+          <input id="set-current" name="currentPassword" type="password" autocomplete="current-password" required>
+          <small class="field-error" data-error-for="currentPassword"></small>
+        </div>
+        <div class="field">
+          <label for="set-new">New password</label>
+          <input id="set-new" name="newPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="100">
+          <small class="field-error" data-error-for="newPassword"></small>
+        </div>
+        <button class="btn" type="submit">Update password</button>
+      </form>
+    </section>
+    <section class="card">
+      <h2>Delete account</h2>
+      <p class="muted small">Deletes your profile, posts, messages, friendships and every group you own. This cannot be undone.</p>
+      <form id="delete-account-form" class="form" novalidate>
+        <div class="field">
+          <label for="del-password">Password</label>
+          <input id="del-password" name="password" type="password" autocomplete="current-password" required>
+          <small class="field-error" data-error-for="password"></small>
+        </div>
+        <label class="checkbox"><input type="checkbox" name="confirm" value="yes"> I understand</label>
+        <small class="field-error" data-error-for="confirm"></small>
+        <button class="btn btn--danger" type="submit">Delete my account</button>
+      </form>
+    </section>
+  </aside>
+</div>
+<%- include('../partials/foot', { scripts: ['/js/pages/settings.js'] }) %>

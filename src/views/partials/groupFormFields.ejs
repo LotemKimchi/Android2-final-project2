@@ -1,0 +1,29 @@
+<% const prefix = locals.idPrefix ?? 'group'; %>
+<div class="field">
+  <label for="<%= prefix %>-name">Name</label>
+  <input id="<%= prefix %>-name" name="name" required minlength="3" maxlength="60">
+  <small class="field-error" data-error-for="name"></small>
+</div>
+<div class="field">
+  <label for="<%= prefix %>-description">Description</label>
+  <textarea id="<%= prefix %>-description" name="description" rows="3" maxlength="500"></textarea>
+  <small class="field-error" data-error-for="description"></small>
+</div>
+<div class="field">
+  <label for="<%= prefix %>-category">Category</label>
+  <select id="<%= prefix %>-category" name="category" required>
+    <option value="">Choose…</option>
+    <% categories.forEach((category) => { %>
+      <option value="<%= category %>"><%= category[0].toUpperCase() + category.slice(1) %></option>
+    <% }) %>
+  </select>
+  <small class="field-error" data-error-for="category"></small>
+</div>
+<div class="field">
+  <label for="<%= prefix %>-privacy">Privacy</label>
+  <select id="<%= prefix %>-privacy" name="privacy">
+    <option value="public">Public — anyone can join and read</option>
+    <option value="private">Private — admins approve members; content hidden from outsiders</option>
+  </select>
+  <small class="field-error" data-error-for="privacy"></small>
+</div>

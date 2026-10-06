@@ -1,0 +1,19 @@
+<%- include('../partials/head', { title }) %>
+<h1>Friends</h1>
+<div class="page-grid">
+  <section class="stack">
+    <h2>Your friends</h2>
+    <div id="friends-list" class="columns-directory"></div>
+  </section>
+  <aside class="stack">
+    <section class="card">
+      <h2>Requests for you</h2>
+      <div id="incoming-requests" class="stack"></div>
+    </section>
+    <section class="card">
+      <h2>Requests you sent</h2>
+      <div id="outgoing-requests" class="stack"></div>
+    </section>
+  </aside>
+</div>
+<%- include('../partials/foot', { scripts: ['/js/pages/friends.js'] }) %>

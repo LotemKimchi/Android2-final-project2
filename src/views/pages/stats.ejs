@@ -1,0 +1,26 @@
+<%- include('../partials/head', { title, styles: ['/css/stats.css'] }) %>
+<h1>Statistics</h1>
+<p class="muted">Live numbers straight from the database.</p>
+<section class="card stack">
+  <div class="row row--between">
+    <h2>Posts per month</h2>
+    <label class="small">Range
+      <select id="months-select">
+        <option value="6">6 months</option>
+        <option value="12" selected>12 months</option>
+        <option value="24">24 months</option>
+      </select>
+    </label>
+  </div>
+  <div id="posts-per-month-chart" class="chart-container"></div>
+</section>
+<section class="card stack">
+  <h2>What are people talking about?</h2>
+  <p class="muted small">Posts in groups, by the group's topic. Hover a slice or a topic for details.</p>
+  <div id="posts-per-category-chart" class="chart-container"></div>
+</section>
+<section class="card stack">
+  <h2>Largest groups by members</h2>
+  <div id="members-per-group-chart" class="chart-container"></div>
+</section>
+<%- include('../partials/foot', { scripts: ['/js/pages/stats.js'], useD3: true }) %>

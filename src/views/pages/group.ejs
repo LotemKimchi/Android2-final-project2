@@ -1,0 +1,29 @@
+<%- include('../partials/head', { title }) %>
+<section id="group-header" class="card"><p class="muted">Loading group…</p></section>
+<div class="page-grid">
+  <section class="stack">
+    <div id="group-composer" class="hidden">
+      <%- include('../partials/postComposer', { idPrefix: 'group', placeholder: 'Write something to the group…' }) %>
+    </div>
+    <div id="group-posts"></div>
+  </section>
+  <aside class="stack">
+    <section id="group-admin" class="card stack hidden">
+      <h2>Manage group</h2>
+      <form id="edit-group-form" class="form" novalidate>
+        <%- include('../partials/groupFormFields', { idPrefix: 'edit-group' }) %>
+        <button class="btn btn--primary" type="submit">Save changes</button>
+      </form>
+      <div>
+        <h3>Join requests</h3>
+        <div id="join-requests" class="stack"></div>
+      </div>
+      <button id="delete-group" class="btn btn--danger hidden" type="button">Delete group</button>
+    </section>
+    <section class="card">
+      <h2>Members</h2>
+      <div id="group-members" class="stack"></div>
+    </section>
+  </aside>
+</div>
+<%- include('../partials/foot', { scripts: ['/js/pages/group.js'], useIslands: true }) %>

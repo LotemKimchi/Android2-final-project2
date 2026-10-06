@@ -1,0 +1,46 @@
+<%- include('../partials/head', { title }) %>
+<h1>Search posts</h1>
+<section class="card">
+  <form id="post-search-form" class="form form--inline" novalidate>
+    <div class="field">
+      <label for="ps-q">Text contains</label>
+      <input id="ps-q" name="q" maxlength="100">
+      <small class="field-error" data-error-for="q"></small>
+    </div>
+    <div class="field">
+      <label for="ps-author">Author</label>
+      <input id="ps-author" name="authorName" maxlength="60" placeholder="name or username">
+      <small class="field-error" data-error-for="authorName"></small>
+    </div>
+    <div class="field">
+      <label for="ps-group">Group</label>
+      <select id="ps-group" name="groupId"><option value="">Any</option></select>
+    </div>
+    <div class="field">
+      <label for="ps-from">From</label>
+      <input id="ps-from" name="from" type="date">
+      <small class="field-error" data-error-for="from"></small>
+    </div>
+    <div class="field">
+      <label for="ps-to">To</label>
+      <input id="ps-to" name="to" type="date">
+      <small class="field-error" data-error-for="to"></small>
+    </div>
+    <div class="field">
+      <label for="ps-media">Media</label>
+      <select id="ps-media" name="media">
+        <option value="">Any post</option>
+        <option value="any">With image or video</option>
+        <option value="image">With image</option>
+        <option value="video">With video</option>
+        <option value="none">Text only</option>
+      </select>
+    </div>
+    <div class="row">
+      <button class="btn btn--primary" type="submit">Search</button>
+      <button class="btn btn--ghost" type="reset">Clear</button>
+    </div>
+  </form>
+</section>
+<div id="post-results"></div>
+<%- include('../partials/foot', { scripts: ['/js/pages/postSearch.js'], useIslands: true }) %>

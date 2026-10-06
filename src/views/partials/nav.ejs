@@ -1,0 +1,30 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Circles</a>
+    <% if (locals.currentUser) { %>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/feed">Feed</a>
+        <a href="/groups">Groups</a>
+        <a href="/users">People</a>
+        <a href="/friends">Friends</a>
+        <a href="/posts/search">Search posts</a>
+        <a href="/chat">Chat</a>
+        <a href="/stats">Stats</a>
+      </nav>
+      <div class="site-header__user">
+        <a class="user-chip" href="/users/<%= currentUser.id %>">
+          <img class="avatar avatar--sm" src="<%= currentUser.avatarUrl || '/images/default-avatar.svg' %>" alt="">
+          <span><%= currentUser.displayName %></span>
+        </a>
+        <a href="/me/posts">My posts</a>
+        <a href="/settings">Settings</a>
+        <button class="btn btn--ghost js-logout" type="button">Log out</button>
+      </div>
+    <% } else { %>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/login">Log in</a>
+        <a href="/register">Sign up</a>
+      </nav>
+    <% } %>
+  </div>
+</header>

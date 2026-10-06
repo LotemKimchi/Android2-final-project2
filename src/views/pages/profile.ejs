@@ -1,0 +1,12 @@
+<%- include('../partials/head', { title }) %>
+<section id="profile-header" class="card profile-header">
+  <p class="muted">Loading profile…</p>
+</section>
+<section class="stack">
+  <div id="profile-composer" class="hidden">
+    <%- include('../partials/postComposer', { idPrefix: 'profile' }) %>
+  </div>
+  <h2>Posts</h2>
+  <div id="profile-posts"></div>
+</section>
+<%- include('../partials/foot', { scripts: ['/js/pages/profile.js'], useIslands: true }) %>
