@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { requireAuth } from '../../middleware/auth.js';
 import authRoutes from './authRoutes.js';
+import commentRoutes from './commentRoutes.js';
 import groupRoutes from './groupRoutes.js';
 import messageRoutes from './messageRoutes.js';
 import postRoutes from './postRoutes.js';
@@ -14,6 +15,7 @@ router.use('/auth', authRoutes);
 router.use('/users', requireAuth, userRoutes);
 router.use('/groups', requireAuth, groupRoutes);
 router.use('/posts', requireAuth, postRoutes);
+router.use('/comments', requireAuth, commentRoutes);
 router.use('/messages', requireAuth, messageRoutes);
 router.use('/stats', requireAuth, statsRoutes);
 

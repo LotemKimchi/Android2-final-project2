@@ -1,7 +1,9 @@
 import { Router } from 'express';
+import * as comments from '../../controllers/commentController.js';
 import * as posts from '../../controllers/postController.js';
 import { uploadPostMedia } from '../../middleware/upload.js';
 import { validate } from '../../middleware/validate.js';
+import { createCommentSchema } from '../../validators/commentSchemas.js';
 import { idParams } from '../../validators/common.js';
 import {
   createPostSchema,
@@ -30,5 +32,12 @@ router.patch(
 router.delete('/:id', withId, posts.deletePost);
 router.post('/:id/like', withId, posts.likePost);
 router.delete('/:id/like', withId, posts.unlikePost);
+
+router.get('/:id/comments', withId, comments.listComments);
+router.post(
+  '/:id/comments',
+  validate({ params: idParams, body: createCommentSchema }),
+  comments.createComment,
+);
 
 export default router;

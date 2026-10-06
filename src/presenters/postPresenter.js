@@ -1,7 +1,10 @@
 import { includesId, sameId } from '../utils/ids.js';
 import { toUserSummary } from './userPresenter.js';
 
-/** Expects `author` populated and `group` populated with name, privacy, admins (or null). */
+/**
+ * Expects `author` populated and `group` populated with name, privacy, admins (or null).
+ * `commentCount` is optional (see withCommentCounts) and defaults to 0.
+ */
 export function toPost(post, viewerId) {
   const isAuthor = sameId(post.author, viewerId);
   const isGroupAdmin = Boolean(post.group) && includesId(post.group.admins, viewerId);
@@ -18,6 +21,7 @@ export function toPost(post, viewerId) {
       : null,
     likeCount: post.likes.length,
     likedByMe: includesId(post.likes, viewerId),
+    commentCount: post.commentCount ?? 0,
     canEdit: isAuthor,
     canDelete: isAuthor || isGroupAdmin,
   };

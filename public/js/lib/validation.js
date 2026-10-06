@@ -14,6 +14,7 @@ export const LIMITS = {
   groupNameMax: 60,
   groupDescriptionMax: 500,
   postMax: 2000,
+  commentMax: 500,
   messageMax: 1000,
   searchMax: 100,
 };

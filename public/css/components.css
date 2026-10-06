@@ -242,6 +242,93 @@
   padding-top: 0.5rem;
 }
 
+/* Comments */
+.post-card__comments {
+  border-top: 1px solid var(--color-border);
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+}
+
+.comment-list > * + * {
+  margin-top: 0.75rem;
+}
+
+.comment {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.comment__body {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+}
+
+.comment__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.comment__author {
+  font-weight: 700;
+}
+
+.comment__content {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0.25rem 0 0;
+}
+
+.comment__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.comment-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.75rem;
+}
+
+.comment-form textarea {
+  flex: 1;
+  min-width: 0;
+  resize: vertical;
+}
+
+.comment-form .field-error {
+  flex-basis: 100%;
+}
+
+/* A button that looks like a small text link (comment Edit / Delete). */
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.link-btn--danger:hover {
+  color: var(--color-danger);
+}
+
 /* Pager */
 .pager {
   display: flex;

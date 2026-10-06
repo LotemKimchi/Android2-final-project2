@@ -1,3 +1,4 @@
+import { Comment } from '../models/Comment.js';
 import { Group } from '../models/Group.js';
 import { Message } from '../models/Message.js';
 import { Post } from '../models/Post.js';
@@ -19,6 +20,8 @@ export async function deleteAccount(userId) {
 
   const posts = await Post.find({ author: userId }).select('imageUrl videoUrl').lean();
   await Promise.all([
+    // Their own comments anywhere + everyone's comments on their posts.
+    Comment.deleteMany({ $or: [{ author: userId }, { post: { $in: posts.map((p) => p._id) } }] }),
     Post.deleteMany({ author: userId }),
     Post.updateMany({ likes: userId }, { $pull: { likes: userId } }),
     Message.deleteMany({ $or: [{ from: userId }, { to: userId }] }),

@@ -1,9 +1,15 @@
+import { Comment } from '../models/Comment.js';
 import { Post } from '../models/Post.js';
 import { User } from '../models/User.js';
 import { toPost } from '../presenters/postPresenter.js';
 import { findGroupOr404, isMember } from '../services/groupAccess.js';
 import { feedFilter, visiblePostsFilter } from '../services/postAccess.js';
-import { findPostsPage, findPostWithRelations, findVisiblePost } from '../services/postQueries.js';
+import {
+  findPostsPage,
+  findPostWithRelations,
+  findVisiblePost,
+  withCommentCounts,
+} from '../services/postQueries.js';
 import { addDays } from '../utils/dates.js';
 import { deleteUploadsByUrl, toPublicUrl } from '../utils/files.js';
 import { HttpError } from '../utils/HttpError.js';
@@ -60,7 +66,8 @@ export async function searchPosts(req, res) {
 
 export async function getPost(req, res) {
   const post = await findVisiblePost(req.valid.params.id, req.user.id);
-  res.json({ post: toPost(post, req.user.id) });
+  const [counted] = await withCommentCounts([post]);
+  res.json({ post: toPost(counted, req.user.id) });
 }
 
 export async function createPost(req, res) {
@@ -107,7 +114,7 @@ export async function updatePost(req, res) {
 
   await deleteUploadsByUrl(replacedFiles);
   // Authors can always see their own posts, even after leaving a private group.
-  const updated = await findPostWithRelations(post._id);
+  const [updated] = await withCommentCounts([await findPostWithRelations(post._id)]);
   res.json({ post: toPost(updated, userId) });
 }
 
@@ -122,6 +129,7 @@ export async function deletePost(req, res) {
   const isGroupAdmin = Boolean(post.group) && includesId(post.group.admins, userId);
   if (!isAuthor && !isGroupAdmin) throw HttpError.forbidden('You can only delete your own posts');
 
+  await Comment.deleteMany({ post: post._id });
   await post.deleteOne();
   await deleteUploadsByUrl([post.imageUrl, post.videoUrl]);
   res.status(204).end();

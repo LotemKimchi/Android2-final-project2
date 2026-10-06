@@ -69,8 +69,35 @@ export function postCard(post) {
         <button type="button" class="btn btn--ghost js-like${post.likedByMe ? ' is-active' : ''}" aria-pressed="${post.likedByMe}">
           ♥ <span class="js-like-count">${post.likeCount}</span>
         </button>
+        <button type="button" class="btn btn--ghost js-toggle-comments" aria-expanded="false">
+          💬 <span class="js-comment-count">${post.commentCount}</span>
+        </button>
         ${post.canEdit ? '<button type="button" class="btn btn--ghost js-edit">Edit</button>' : ''}
         ${post.canDelete ? '<button type="button" class="btn btn--ghost btn--danger js-delete">Delete</button>' : ''}
       </footer>
+      <section class="post-card__comments hidden js-comments" aria-label="Comments"></section>
     </article>`;
+}
+
+export function commentItem(comment) {
+  const actions = [
+    comment.canEdit ? '<button type="button" class="link-btn js-comment-edit">Edit</button>' : '',
+    comment.canDelete
+      ? '<button type="button" class="link-btn link-btn--danger js-comment-delete">Delete</button>'
+      : '',
+  ].join('');
+  return `
+    <div class="comment" data-comment-id="${escapeHtml(comment.id)}">
+      ${avatarImg(comment.author, 'sm')}
+      <div class="comment__body">
+        <div class="comment__meta">
+          <a class="comment__author" href="/users/${escapeHtml(comment.author.id)}">${escapeHtml(comment.author.displayName)}</a>
+          <span class="muted small" title="${escapeHtml(formatDateTime(comment.createdAt))}">
+            ${escapeHtml(timeAgo(comment.createdAt))}${comment.edited ? ' · edited' : ''}
+          </span>
+        </div>
+        <p class="comment__content">${escapeHtml(comment.content)}</p>
+        ${actions ? `<div class="comment__actions">${actions}</div>` : ''}
+      </div>
+    </div>`;
 }

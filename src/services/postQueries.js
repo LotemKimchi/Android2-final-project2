@@ -1,3 +1,4 @@
+import { Comment } from '../models/Comment.js';
 import { Post } from '../models/Post.js';
 import { toPost } from '../presenters/postPresenter.js';
 import { HttpError } from '../utils/HttpError.js';
@@ -11,6 +12,19 @@ function withRelations(query) {
   return query.populate('author', AUTHOR_FIELDS).populate('group', GROUP_FIELDS);
 }
 
+/**
+ * Adds `commentCount` to each (lean) post. One aggregation for the whole list — not one
+ * count query per post (the "N+1 queries" problem).
+ */
+export async function withCommentCounts(posts) {
+  const counts = await Comment.aggregate([
+    { $match: { post: { $in: posts.map((post) => post._id) } } },
+    { $group: { _id: '$post', count: { $sum: 1 } } },
+  ]);
+  const countByPost = new Map(counts.map(({ _id, count }) => [String(_id), count]));
+  return posts.map((post) => ({ ...post, commentCount: countByPost.get(String(post._id)) ?? 0 }));
+}
+
 export async function findPostsPage(filter, { page, limit }, viewerId) {
   const [posts, total] = await Promise.all([
     withRelations(
@@ -18,7 +32,8 @@ export async function findPostsPage(filter, { page, limit }, viewerId) {
     ).lean(),
     Post.countDocuments(filter),
   ]);
-  const items = posts.filter((post) => post.author).map((post) => toPost(post, viewerId));
+  const withCounts = await withCommentCounts(posts.filter((post) => post.author));
+  const items = withCounts.map((post) => toPost(post, viewerId));
   return toPage({ items, total, page, limit });
 }
 
