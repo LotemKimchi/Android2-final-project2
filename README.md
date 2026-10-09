@@ -5,7 +5,7 @@ jQuery/Ajax, Socket.io chat, D3 charts, React islands for HTML5 video & canvas.
 
 ## Getting started
 
-Prerequisites: Node.js ≥ 20.11 and a local MongoDB server on `mongodb://127.0.0.1:27017`.
+Prerequisites: Node.js ≥ 20.11 and a MongoDB Atlas cluster (with your IP allowed under Network Access).
 
 ```bash
 npm install
@@ -14,8 +14,9 @@ npm run build                 # builds the React islands into public/dist
 npm start                     # http://localhost:3000
 ```
 
-`.env` settings: `PORT`, `MONGODB_URI` (default `mongodb://127.0.0.1:27017/circles`; the database
-name is the last path segment), `JWT_SECRET` (at least 32 random characters) and `UPLOAD_DIR`.
+`.env` settings: `PORT`, `MONGO_URI` (the Atlas connection string; its `<db_username>` /
+`<db_password>` placeholders are filled from `MONGO_USERNAME` / `MONGO_PASSWORD`), `MONGO_DB_NAME`
+(default `circles`), `JWT_SECRET` (at least 32 random characters) and `UPLOAD_DIR`.
 
 Development (auto-restart server + rebuild islands on change): `npm run dev`.
 Lint / format: `npm run lint`, `npm run format`.

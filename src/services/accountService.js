@@ -7,8 +7,7 @@ import { deleteUploadsByUrl } from '../utils/files.js';
 import { deleteGroupCascade } from './groupService.js';
 
 /**
- * Removes a user and everything that belongs to them. Local MongoDB runs standalone (no
- * transactions), so steps are ordered to leave the least damage if one fails midway:
+ * Removes a user and everything that belongs to them. No transaction is used, so steps are ordered to leave the least damage if one fails midway:
  * dependent data first, the user document last.
  */
 export async function deleteAccount(userId) {
